@@ -47,4 +47,13 @@ return response()->json([
 'token' => $jwt_token,
 ]);
 }
+
+public function profile()
+{
+    return response()->json(
+        [
+            'user' => auth()->user()
+        ]
+    );
+}
 }
