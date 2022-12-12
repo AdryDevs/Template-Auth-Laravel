@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth:sanctum']
 //USERS
 
 Route::group([
-    'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth', 'isSuperAdmin'
 ], function (){
     Route::post('/add_super_admin_role/{id}', [UserController::class, 'addSuperAdminRoleByIdUser']);
 });
