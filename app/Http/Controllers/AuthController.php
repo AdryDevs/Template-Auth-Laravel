@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+
+    const USER_ROLE_ID = 1;
+
     public function register(Request $request)
 {
 $validator = Validator::make($request->all(), [
@@ -24,6 +27,9 @@ $user = User::create([
 'email' => $request->get('email'),
 'password' => bcrypt($request->password)
 ]);
+
+$user->roles()->attach(self::USER_ROLE_ID);
+
 $token = JWTAuth::fromUser($user);
 
 return response()->json(compact('user','token'),201);
