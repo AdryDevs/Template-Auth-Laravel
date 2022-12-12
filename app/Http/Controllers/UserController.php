@@ -22,13 +22,6 @@ class UserController extends Controller
                 ], 404);
             }
 
-            if ($user->hasRole(self::SUPER_ADMIN_ROLE_ID)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'User already has super admin role'
-                ]);
-            }
-
             $user->roles()->attach(self::SUPER_ADMIN_ROLE_ID);
 
             return response()->json([
